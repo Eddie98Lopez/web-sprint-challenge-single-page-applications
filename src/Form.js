@@ -7,7 +7,8 @@ import * as Yup from 'yup'
 const Form = () => {
 
     const [formState,setFormState]=useState({orderName: "", size:"", sauce:"", subsitute: "", specialInfo: "",toppings:{}})
-    const [errors,setErrors]= useState({orderName: "", size:"", sauce:"", subsitute: "", specialInfo: "",toppings:{}})
+    const [errors,setErrors]= useState({orderName: "", size:"", sauce:"", subsitute: "", specialInfo: "",toppings:""})
+    const [disabled,setDisabled]=useState({})
     const schema = Yup.object().shape({
         orderName: Yup
             .string()
@@ -18,7 +19,11 @@ const Form = () => {
             .oneOf(['small','medium','large'], "You must choose a size"),
         sauce: Yup
             .string()
-            .oneOf(['original','bbq','garRanch'],"You must choose a sauce")
+            .oneOf(['original','bbq','garRanch'],"You must choose a sauce"),
+        toppings: Yup
+            .object(),
+        specialInfo: Yup
+            .string()
     })
 
 
@@ -161,7 +166,7 @@ const Form = () => {
 
 
 
-        
+    <button type='submit'> Submit Order</button>
 
     </form>
 
