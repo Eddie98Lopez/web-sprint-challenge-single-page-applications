@@ -70,6 +70,14 @@ const App = () => {
     schema.isValid(formData).then(valid=>setDisabled(!valid))
   },[formData])
 
+
+  //useEffect if had url to POST to
+  // useEffect(()=>{
+  // axios.get('http://endpoint/')
+  //    .then(res=>setCart([...cart,res.data]))
+  //    .catch(err=>console.log(err))
+  //},[])
+
   return (
     <>
 
