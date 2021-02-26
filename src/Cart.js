@@ -1,5 +1,6 @@
 import React from 'react'
 import {Route,Link} from 'react-router-dom'
+import CartItem from './CartItem'
 import styled from 'styled-components'
 
 
@@ -36,7 +37,7 @@ const Cart = (props)=>{
     return (
         <div>
 
-            {cart.length === 0 ? empty : cart.map(item=><div>{item.orderName}</div>) }
+            {cart.length === 0 ? empty : cart.map(item=><CartItem item={item}/>) }
 
 
         </div>

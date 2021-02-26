@@ -3,6 +3,7 @@ import * as Yup from 'yup'
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Home from './Home'
 import Cart from './Cart'
+import Confirmation from './Confirmation'
 import Form from './Form'
 import schema from './formSchema'
 import styled from 'styled-components'
@@ -25,8 +26,8 @@ height:10vh;
 const App = () => {
   const [id,setId]=useState(1)
 
-  const initialCreds = {orderName: "", size:"", sauce:"", subsitute: "",pepperoni:'',olive:'',mushroom:'',cheese:'',special:'',id:id}
-  const initialErrs = {orderName: "", size:"", sauce:""}
+  const initialCreds = {orderName: "", size:"", sauce:"", subsitute: "",pepperoni: false,olive:false,mushroom: false,cheese:false,special:'',id:id}
+  const initialErrs = {orderName: "", size:"", sauce:"", subsitute: "",pepperoni:'',olive:'',mushroom:'',cheese:'',special:'', id: id}
 
   const [formData, setFormData] = useState(initialCreds)
   const [errors,setErrors]=useState(initialErrs)
@@ -86,6 +87,10 @@ const App = () => {
 
           <Route exact path='/cart'>
             <Cart cart={cart}/>
+          </Route>
+
+          <Route exact path='/confirmed'>
+            <Confirmation/>
           </Route>
 
         </Switch>

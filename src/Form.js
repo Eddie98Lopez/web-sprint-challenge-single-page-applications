@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Link, withRouter} from 'react-router-dom'
 
 
 const OrderForm = styled.form`
@@ -23,6 +24,8 @@ padding:2rem;
     cursor:pointer;
 }
 `
+const Errors = styled.div`
+color:red;`
 
 const Form = (props)=>{
 
@@ -36,7 +39,15 @@ const Form = (props)=>{
 
     const onSubmit = (e)=>{
         e.preventDefault()
+        //console.dir(e.target)
+        //console.log(e.target.children)
         submit()
+        for(let i=9; i<13; i++){
+            e.target.children[i].firstChild.checked = false
+        }
+
+        props.history.push('/confirmed')
+
     }
 
     return(
@@ -60,7 +71,7 @@ const Form = (props)=>{
                     <select
                     name='size'
                     onChange={onChange}>
-
+                        <option value='-----Select One-----'>-----Select One-----</option>
                         <option value='small'>Small</option>
                         <option value='medium'>Medium</option>
                         <option value='large'>Large</option>
@@ -146,11 +157,16 @@ const Form = (props)=>{
                     />
                 </label>
 
-            <button disabled={disabled}>Place Order</button>
-
-
+            <button disabled={disabled} >Place Order</button>
+    
 
             </OrderForm>
+
+            <Errors>
+                <div>{errors.orderName}</div>
+                <div>{errors.size}</div>
+                <div>{errors.sauce}</div>
+            </Errors>
 
 
 
@@ -159,4 +175,4 @@ const Form = (props)=>{
     )
 }
 
-export default Form
+export default withRouter(Form)
