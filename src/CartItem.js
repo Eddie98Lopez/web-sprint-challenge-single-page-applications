@@ -29,7 +29,7 @@ const CartItem = (props)=>{
             <p>{item.mushroom === true && 'mushroom'}</p>
             <p>{item.olive === true && 'olives'}</p>
             <p>{item.cheese === true && 'cheese'}</p>
-            <p>{item.special === '' && 'No special Instructions'}</p>
+            <p>{item.special === '' ? 'No special Instructions': `"${item.special}"`}</p>
 
         </CartDiv>
 
