@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Home from './Home'
 import Cart from './Cart'
 import Form from './Form'
-import formSchema from './formSchema'
+import schema from './formSchema'
 import styled from 'styled-components'
 
 const Nav = styled.nav`
@@ -23,10 +23,10 @@ height:10vh;
 `
 
 const App = () => {
-  const [id,setId]=useState(0)
+  const [id,setId]=useState(1)
 
-  const initialCreds = {orderName: "", size:"", sauce:"", subsitute: "", specialInfo: "",toppings:{},id:id}
-  const initialErrs = {orderName: "", size:"", sauce:"", subsitute: "", specialInfo: "",toppings:""}
+  const initialCreds = {orderName: "", size:"", sauce:"", subsitute: "",pepperoni:'',olive:'',mushroom:'',cheese:'',special:'',id:id}
+  const initialErrs = {orderName: "", size:"", sauce:""}
 
   const [formData, setFormData] = useState(initialCreds)
   const [errors,setErrors]=useState(initialErrs)
@@ -39,15 +39,31 @@ const App = () => {
 
 
     ////Yup stuff 
+
+    Yup.reach(schema,name)
+      .validate(value)
+      .then(()=>setErrors({...errors, [name]:''}))
+      .catch(err=> setErrors({...errors, [name]: err.errors[0]}))
+
     setFormData({...formData, [name]:value})
+    console.log(formData)
+    
+    
   }
 
   const submit =()=>{
 
     setCart([...cart,formData])
+    console.log(cart)
     setId(id+1)
     setFormData(initialCreds)
   }
+
+  ///useEffect validation
+
+  useEffect(()=>{
+    schema.isValid(formData).then(valid=>setDisabled(!valid))
+  },[formData])
 
   return (
     <>
@@ -69,7 +85,7 @@ const App = () => {
           </Route>
 
           <Route exact path='/cart'>
-            <Cart/>
+            <Cart cart={cart}/>
           </Route>
 
         </Switch>
