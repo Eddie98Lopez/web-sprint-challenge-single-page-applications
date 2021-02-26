@@ -47,7 +47,7 @@ const App = () => {
       .catch(err=> setErrors({...errors, [name]: err.errors[0]}))
 
     setFormData({...formData, [name]:value})
-    console.log(formData)
+    //console.log(formData)
     
     
   }
@@ -55,6 +55,10 @@ const App = () => {
   const submit =()=>{
 
     setCart([...cart,formData])
+    // if i had an active server endpoint i would do ...
+    //axios.post('http://endpoint/', formData)
+    //    .then(res=>setCart([...cart,res.data]))
+    //    .catch(err=> console.log('something went wrong', err))
     console.log(cart)
     setId(id+1)
     setFormData(initialCreds)
