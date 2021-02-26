@@ -71,7 +71,7 @@ const App = () => {
   },[formData])
 
 
-  //useEffect if had url to POST to
+  //useEffect if had url to GET and POST to
   // useEffect(()=>{
   // axios.get('http://endpoint/')
   //    .then(res=>setCart([...cart,res.data]))
