@@ -12,6 +12,10 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 
+& button{
+    cursor:pointer;
+}
+
 
 `
 

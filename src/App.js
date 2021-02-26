@@ -23,14 +23,31 @@ height:10vh;
 `
 
 const App = () => {
+  const [id,setId]=useState(0)
 
-  const initialCreds = {orderName: "", size:"", sauce:"", subsitute: "", specialInfo: "",toppings:{}}
+  const initialCreds = {orderName: "", size:"", sauce:"", subsitute: "", specialInfo: "",toppings:{},id:id}
   const initialErrs = {orderName: "", size:"", sauce:"", subsitute: "", specialInfo: "",toppings:""}
 
   const [formData, setFormData] = useState(initialCreds)
   const [errors,setErrors]=useState(initialErrs)
   const [disabled,setDisabled]=useState(true)
   const [cart,setCart]= useState([])
+
+  //Helper Funcs
+
+  const inputChange = (name,value)=>{
+
+
+    ////Yup stuff 
+    setFormData({...formData, [name]:value})
+  }
+
+  const submit =()=>{
+
+    setCart([...cart,formData])
+    setId(id+1)
+    setFormData(initialCreds)
+  }
 
   return (
     <>
@@ -48,7 +65,7 @@ const App = () => {
           </Route>
 
           <Route exact path='/pizza'>
-            <Form/>
+            <Form values={formData} change={inputChange} submit={submit} disabled={disabled} errors={errors}/>
           </Route>
 
           <Route exact path='/cart'>
