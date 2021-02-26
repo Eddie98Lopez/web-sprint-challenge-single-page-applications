@@ -11,8 +11,10 @@ describe('Tests the form inputs and validation',()=>{
         cy.get('input[name="sauce"]').check('original')
         cy.get('input[name="pepperoni"]').click()
         cy.get('input[name="cheese"]').click()
+        cy.get('textarea').type('Extra cheese please')
         cy.get('button').click()
         cy.get('header').contains('View Cart').click()
+
     })
 
 
